@@ -1,24 +1,34 @@
-# Android图片轮播控件 *如果对你有帮助请star哦！*
+# Android图片轮播控件
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-![1.4版本更新，修改了图片加载方式](https://raw.githubusercontent.com/youth5201314/banner/master/image/version1.4.png)
+
+## 新框架发布，欢迎大家Star
+
+[XFrame - Android快速开发框架](https://github.com/youth5201314/XFrame)
+
+[XFrame详细功能文档预览](https://github.com/youth5201314/XFrame/wiki)
+
 
 <br>
+
 现在的绝大数app都有banner界面，实现循环播放多个广告图片和手动滑动循环等功能。因为ViewPager并不支持循环翻页，
 所以要实现循环还得需要自己去动手，我就把项目中的控件剔了出来，希望大家觉得有用。目前框架可以进行不同样式、不同动画设置，
 以及完善的api方法能满足大部分的需求了。
+
 ## 效果图
+
 |模式|图片
 |---|---|
-|指示器模式|![效果示例](https://raw.githubusercontent.com/youth5201314/banner/master/image/1.png)
-|数字模式|![效果示例](https://raw.githubusercontent.com/youth5201314/banner/master/image/2.png)
-|数字加标题模式|![效果示例](https://raw.githubusercontent.com/youth5201314/banner/master/image/3.png)
-|指示器加标题模式<br>垂直显示|![效果示例](https://raw.githubusercontent.com/youth5201314/banner/master/image/4.png)
-|指示器加标题模式<br>水平显示|![效果示例](https://raw.githubusercontent.com/youth5201314/banner/master/image/5.png)
+|指示器模式|![效果示例](http://oceh51kku.bkt.clouddn.com/banner_example1.png)|
+|数字模式|![效果示例](http://oceh51kku.bkt.clouddn.com/banner_example2.png)|
+|数字加标题模式|![效果示例](http://oceh51kku.bkt.clouddn.com/banner_example3.png)|
+|指示器加标题模式<br>垂直显示|![效果示例](http://oceh51kku.bkt.clouddn.com/banner_example4.png)|
+|指示器加标题模式<br>水平显示|![效果示例](http://oceh51kku.bkt.clouddn.com/banner_example5.png)|
 
 ### 联系方式  <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KBkYGhAfGhEYEB5oWVkGS0dF" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_11.png"/></a>
-![效果示例](http://oceh51kku.bkt.clouddn.com/Android%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81%E7%BE%A4%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
-* 如果遇到问题和建议欢迎在给我发送邮件或者加入qq群，希望让这个工程越来越完善。
+ ![效果示例](http://oceh51kku.bkt.clouddn.com/Android%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81%E7%BE%A4%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
+* 如果有问题可以加群大家一起交流
+* 我的个人微博：https://weibo.com/u/3013494003 有兴趣的也可以关注，大家一起交流
 
 ## 常量
 |常量名称|描述|所属方法
@@ -34,6 +44,8 @@
 |BannerConfig.RIGHT| 指示器居右|setIndicatorGravity
 
 ## 动画常量类（setBannerAnimation方法调用）
+[ViewPagerTransforms](https://github.com/ToxicBakery/ViewPagerTransforms) `动画时集成的第三方库，可能有兼容问题导致position位置不准确，你可以选择参考动画然后自定义动画`
+
 |常量类名|
 |---|
 |Transformer.Default| 
@@ -55,7 +67,7 @@
 |Transformer.ZoomOutSlide| 
 
 
-##方法
+## 方法
 |方法名|描述|版本限制
 |---|---|---|
 |setBannerStyle(int bannerStyle)| 设置轮播样式（默认为CIRCLE_INDICATOR）|无
@@ -66,7 +78,7 @@
 |update(List<?> imageUrls)| 更新图片 |1.4.5开始
 |startAutoPlay()|开始轮播|1.4开始，此方法只作用于banner加载完毕-->需要在start()后执行
 |stopAutoPlay()|结束轮播|1.4开始，此方法只作用于banner加载完毕-->需要在start()后执行
-|start()|开始进行banner渲染|1.4开始
+|start()|开始进行banner渲染（必须放到最后执行）|1.4开始
 |setOffscreenPageLimit(int limit)|同viewpager的方法作用一样|1.4.2开始
 |setBannerTitle(String[] titles)| 设置轮播要显示的标题和图片对应（如果不传默认不显示标题）|1.3.3结束
 |setBannerTitleList(List<String> titles)| 设置轮播要显示的标题和图片对应（如果不传默认不显示标题）|1.3.3结束
@@ -74,7 +86,8 @@
 |setDelayTime(int time)| 设置轮播图片间隔时间（单位毫秒，默认为2000）|无
 |setImages(Object[]/List<?> imagesUrl)| 设置轮播图片(所有设置参数方法都放在此方法之前执行)|1.4后去掉数组传参
 |setImages(Object[]/List<?> imagesUrl,OnLoadImageListener listener)| 设置轮播图片，并且自定义图片加载方式|1.3.3结束
-|setOnBannerClickListener(this)|设置点击事件，下标是从1开始|无
+|setOnBannerClickListener(this)|设置点击事件，下标是从1开始|无（1.4.9以后废弃了）
+|setOnBannerListener(this)|设置点击事件，下标是从0开始|1.4.9以后
 |setOnLoadImageListener(this)|设置图片加载事件，可以自定义图片加载方式|1.3.3结束
 |setImageLoader(Object implements ImageLoader)|设置图片加载器|1.4开始
 |setOnPageChangeListener(this)|设置viewpager的滑动监听|无
@@ -97,20 +110,20 @@
 |indicator_drawable_selected| reference|指示器选中效果
 |indicator_drawable_unselected| reference|指示器未选中效果
 |image_scale_type| enum |和imageview的ScaleType作用一样
+|banner_default_image| reference | 当banner数据为空是显示的默认图片
+|banner_layout| reference |自定义banner布局文件，但是必须保证id的名称一样（你可以将banner的布局文件复制出来进行修改）
 
 
 ### <a href="http://youth5201314.github.io/2016/08/24/ViewPager%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BBPageTransformer%E4%BD%BF%E7%94%A8/" target="_blank"> [ 点击查看 ViewPager的PageTransformer用法 ]
 
 
-##使用步骤 
+## 使用步骤
 
 #### Step 1.依赖banner
 Gradle 
 ```groovy
 dependencies{
-    compile 'com.youth.banner:banner:1.4.8'  //最新版本
-    or
-    compile 'com.youth.banner:banner:1.3.3' //旧版本，旧版本用法下面有跳转链接
+    compile 'com.youth.banner:banner:1.4.10'  //最新版本
 }
 ```
 或者引用本地lib
@@ -156,7 +169,7 @@ public class GlideImageLoader extends ImageLoader {
         Glide.with(context).load(path).into(imageView);
 
         //Picasso 加载图片简单用法
-        Picasso.with(context).load(path).into(imageView)
+        Picasso.with(context).load(path).into(imageView);
         
         //用fresco加载图片简单用法，记得要写下面的createImageView方法
         Uri uri = Uri.parse((String) path);
@@ -174,6 +187,9 @@ public class GlideImageLoader extends ImageLoader {
 ```
 
 #### Step 5.在Activity或者Fragment中配置Banner 
+
+- 注意！start()方法必须放到最后执行，点击事件请放到start()前，每次都提交问题问为什么点击没有反应？需要轮播一圈才能点击？点击第一个怎么返回1？麻烦仔细阅读文档。
+
 ```java
 --------------------------简单使用-------------------------------
 @Override
@@ -258,7 +274,7 @@ protected void onStop() {
 
 <a href="https://dl.bintray.com/youth5201314/maven/com/youth/banner/banner/" target="_blank"> [历史版本资源地址]
 
-<a href="http://youth5201314.github.io/2016/04/13/Banner%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6-Android%E8%BD%AE%E6%92%AD%E6%8E%A7%E4%BB%B6/" target="_blank"> [1.3.3以前旧版本文档地址]
+<a href="http://youth5201314.github.io/2016/04/13/Banner%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6-Android%E8%BD%AE%E6%92%AD%E6%8E%A7%E4%BB%B6/" target="_blank"> [1.3.3以前旧版本使用文档地址]
 
 ## 常见问题
 
@@ -269,7 +285,7 @@ protected void onStop() {
 
 * 问：怎么显示的一片空白？
     * 答：<br>
-        1、没有添加网络权限就抱怨有问题，然后就拒绝使用，我能说什么？<br>
+        1、没有添加网络权限<br>
         2、检查图片链接是否能打开。
 * 问：怎么加载其他图片资源（资源文件、文件、Uri、assets、raw、ContentProvider、sd卡资源）？
     * 答：列如！如果你使用的是glide，那么可以如下操作，其他图片图片加载框架可能有不同
@@ -296,14 +312,38 @@ protected void onStop() {
         
 * 问：设置banner指示器颜色怎么变成方的了？
 
-    * 答：首先我先要说很多软件的指示器也是矩形的，然后banner的指示器可以设置color、资源图片、drawable文件夹自定义xml，
+    * 答：首先我先要说很多软件的指示器也是矩形的，然后banner的指示器可以设置color、资源图片、drawable文件夹自定义shape ，
     所以形状你自己可以根据需求定义哦！
-            
+
+* 问：为什么banner的点击事件没有反应，需要下一次轮播才行？点击第一个图片怎么返回1？
+
+     * 答：请将点击事件放在start方法之前执行，start必须放到最后执行，详情可以看demo。
+
 ## Thanks
 
 - [ViewPagerTransforms](https://github.com/ToxicBakery/ViewPagerTransforms)
 
 ## 更新说明
+
+#### v1.4.10
+    很久没有维护banner了，有工作原因比较忙，也有经常遇见一些素质低的人，感觉整个世界都欠他们的，特别影响心情。就放弃更新维护了，
+    但是这半年每天邮箱都会收到各种建议反馈，也有很多人私信我，所以在此修复一些当前版本bug，
+    关于有朋友要求让轮播类型可以自定义，不局限于imageview的需求，
+    这个过段时间再发布一个全新的banner版本，会更加灵活，就不在原来的上面弄了，到时候分两个版本走！
+
+ * 解决轮播手动滑动跳转问题：从第一张-->最后一张-->直接跳转到第二张
+ * 解决update刷新轮播图崩溃问题
+ * 将onPageScrolled和onPageSelected方法返回的position转成真实的position
+ * 增加属性banner_default_image，设置当banner数据为空是显示的默认图片
+ * 增加属性banner_layout，可以自定义布局文件，但是必须保证id的名称一样
+ * 修改ViewPager偶发性的越界问题
+ * SwipeRefreshLayout嵌套ViewPager的滑动冲突问题参考demo的SuperSwipeRefreshLayout类
+
+#### v1.4.9
+    banner 优化更新
+ * 废弃以前的点击事件(当然还是可以使用以前的方法)，增加新的setOnBannerListener点击事件，下标从0开始
+ * 解决update刷新轮播图后，会造成多次调用OnPageChangeListener的情况
+ * 改变布局文件变量名，减少和工程冲突
 
 #### v1.4.8
     banner 优化更新

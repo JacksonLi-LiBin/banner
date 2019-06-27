@@ -1,13 +1,9 @@
 package com.test.banner.demo;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,9 +13,7 @@ import com.test.banner.R;
 import com.test.banner.SampleAdapter;
 import com.test.banner.loader.GlideImageLoader;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerClickListener;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.transformer.AccordionTransformer;
 import com.youth.banner.transformer.BackgroundToForegroundTransformer;
 import com.youth.banner.transformer.CubeInTransformer;
@@ -39,10 +33,9 @@ import com.youth.banner.transformer.ZoomOutSlideTransformer;
 import com.youth.banner.transformer.ZoomOutTranformer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class BannerAnimationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, OnBannerClickListener {
+public class BannerAnimationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, OnBannerListener {
     Banner banner;
     List<Class<? extends ViewPager.PageTransformer>> transformers=new ArrayList<>();
     public void initData(){
@@ -50,7 +43,7 @@ public class BannerAnimationActivity extends AppCompatActivity implements Adapte
         transformers.add(AccordionTransformer.class);
         transformers.add(BackgroundToForegroundTransformer.class);
         transformers.add(ForegroundToBackgroundTransformer.class);
-        transformers.add(CubeInTransformer.class);
+        transformers.add(CubeInTransformer.class);//兼容问题，慎用
         transformers.add(CubeOutTransformer.class);
         transformers.add(DepthPageTransformer.class);
         transformers.add(FlipHorizontalTransformer.class);
@@ -71,14 +64,14 @@ public class BannerAnimationActivity extends AppCompatActivity implements Adapte
         setContentView(R.layout.activity_banner_animation);
         initData();
         banner = (Banner) findViewById(R.id.banner);
-        ListView listView= (ListView) findViewById(R.id.list);
-        String[] data=getResources().getStringArray(R.array.anim);
-        listView.setAdapter(new SampleAdapter(this,data));
+        ListView listView = (ListView) findViewById(R.id.list);
+        String[] data = getResources().getStringArray(R.array.anim);
+        listView.setAdapter(new SampleAdapter(this, data));
         listView.setOnItemClickListener(this);
 
         banner.setImages(App.images)
                 .setImageLoader(new GlideImageLoader())
-                .setOnBannerClickListener(this)
+                .setOnBannerListener(this)
                 .start();
 
     }
@@ -90,7 +83,6 @@ public class BannerAnimationActivity extends AppCompatActivity implements Adapte
 
     @Override
     public void OnBannerClick(int position) {
-        Log.e("--",position+"");
         Toast.makeText(getApplicationContext(),"你点击了："+position,Toast.LENGTH_SHORT).show();
     }
 }
